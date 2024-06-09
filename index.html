@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interaktywny Zachód Słońca z Elementami</title>
+<style>
+  body, html {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 5s;
+  }
+  #sun {
+    background: #FFD700;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    position: relative;
+  }
+  .cloud {
+    background: #FFF;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    opacity: 0.8;
+  }
+  #cloud1 { left: 10%; animation: moveClouds 10s linear infinite; }
+  #cloud2 { left: 50%; animation: moveClouds 15s linear infinite; }
+  #cloud3 { left: 90%; animation: moveClouds 20s linear infinite; }
+ 
+  @keyframes moveClouds {
+    0% { top: -10%; }
+    50% { top: 10%; }
+    100% { top: -10%; }
+  }
+  @keyframes set {
+    0% {
+      bottom: 0;
+      background: #FFD700;
+    }
+    50% {
+      background: #FF8C00;
+    }
+    100% {
+      bottom: 100%;
+      background: #FF4500;
+    }
+  }
+</style>
+</head>
+<body>
+<div id="sun"></div>
+<div class="cloud" id="cloud1"></div>
+<div class="cloud" id="cloud2"></div>
+<div class="cloud" id="cloud3"></div>
+<button onclick="startAnimation()">Start</button>
+<button onclick="stopAnimation()">Stop</button>
+<script>
+  var sun = document.getElementById('sun');
+  var body = document.body;
+  var animation;
+ 
+  function startAnimation() {
+    sun.style.animation = 'set 5s ease-in-out infinite';
+    body.style.background = '#FF4500'; // Zmienia kolor tła na wieczorny
+  }
+ 
+  function stopAnimation() {
+    sun.style.animation = 'none';
+    body.style.background = '#87CEEB'; // Przywraca kolor tła do dnia
+  }
+</script>
+</body>
+</html>
